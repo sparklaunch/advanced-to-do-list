@@ -56,9 +56,10 @@ const Form = () => {
     };
     const submitHandler = () => {
         if (title.length !== 0 && content.length !== 0) {
+            const uuid = uuidV4();
             dispatch(
                 createTodo({
-                    id: uuidV4(),
+                    id: uuid,
                     title,
                     content,
                     isDone: false
