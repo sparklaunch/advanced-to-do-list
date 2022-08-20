@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../redux/config/configStore";
 import { createTodo } from "../redux/modules/todo";
 import { v4 as uuidV4 } from "uuid";
 
@@ -46,7 +45,6 @@ const FormFrame = styled.div`
 `;
 
 const Form = () => {
-    const todos = useSelector((state: RootState) => state.todos);
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {

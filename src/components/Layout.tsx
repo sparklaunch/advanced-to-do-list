@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Frame = styled.div`
@@ -37,9 +38,11 @@ function Layout({ children }: { children: ReactNode }) {
     return (
         <Frame>
             <LayoutBox>
-                <Header>
-                    <h1>업그레이드! Todo List</h1>
-                </Header>
+                <Link to="/">
+                    <Header>
+                        <h1>업그레이드! Todo List</h1>
+                    </Header>
+                </Link>
                 {children}
             </LayoutBox>
         </Frame>

@@ -1,13 +1,13 @@
-import styled from "styled-components";
 import Form from "./Form";
+import Layout from "./Layout";
 import Todos from "./Todos";
 
 function Home() {
     return (
-        <div>
+        <Layout>
             <Form />
             <Todos />
-        </div>
+        </Layout>
     );
 }
 
