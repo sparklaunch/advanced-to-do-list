@@ -7,7 +7,7 @@ function App() {
     return (
         <Provider store={store}>
             <GlobalStyle />
-            <Router></Router>
+            <Router />
         </Provider>
     );
 }

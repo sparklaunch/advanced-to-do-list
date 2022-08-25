@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { deleteTodo, markUndone, Todo } from "../redux/modules/todo";
-import { markDone } from "../redux/modules/todo";
+import { deleteTodo, toggleDone, Todo } from "../redux/modules/todo";
 
 const TodoItemFrame = styled.div`
     border: 1px solid gray;
@@ -44,17 +43,7 @@ function TodoItem({ id, title, content, isDone }: Todo) {
     const dispatch = useDispatch();
     const markHandler = () => {
         dispatch(
-            markDone({
-                id,
-                title,
-                content,
-                isDone
-            })
-        );
-    };
-    const unmarkHandler = () => {
-        dispatch(
-            markUndone({
+            toggleDone({
                 id,
                 title,
                 content,
@@ -87,7 +76,7 @@ function TodoItem({ id, title, content, isDone }: Todo) {
             </div>
             <div className="buttons">
                 {isDone ? (
-                    <button className="unmark-button" onClick={unmarkHandler}>
+                    <button className="unmark-button" onClick={markHandler}>
                         제거
                     </button>
                 ) : (

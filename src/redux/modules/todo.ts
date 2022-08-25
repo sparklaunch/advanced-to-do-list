@@ -1,6 +1,5 @@
 const CREATE_TODO = "CREATE_TODO";
-const MARK_DONE = "MARK_DONE";
-const MARK_UNDONE = "MARK_UNDONE";
+const TOGGLE_DONE = "TOGGLE_DONE";
 const DELETE_TODO = "DELETE_TODO";
 
 export type Todo = {
@@ -17,16 +16,9 @@ export const createTodo = (payload: Todo) => {
     }
 }
 
-export const markDone = (payload: Todo) => {
+export const toggleDone = (payload: Todo) => {
     return {
-        type: MARK_DONE,
-        payload
-    }
-}
-
-export const markUndone = (payload: Todo) => {
-    return {
-        type: MARK_UNDONE,
+        type: TOGGLE_DONE,
         payload
     }
 }
@@ -57,17 +49,14 @@ const todos = (state = initialState, action: Action) => {
             return {
                 todos: [...state.todos, action.payload]
             }
-        case MARK_DONE:
-            const doneCopy = [...state.todos];
-            doneCopy.filter(todo => todo.id === action.payload.id)[0].isDone = true;
+        case TOGGLE_DONE:
             return {
-                todos: doneCopy
-            }
-        case MARK_UNDONE:
-            const undoneCopy = [...state.todos];
-            undoneCopy.filter(todo => todo.id === action.payload.id)[0].isDone = false;
-            return {
-                todos: undoneCopy
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.payload.id) {
+                        todo.isDone = !todo.isDone;
+                    }
+                    return todo;
+                })
             }
         case DELETE_TODO:
             return {
